@@ -4,6 +4,8 @@
 #include <wiisprite.h>
 #include <wiiuse/wpad.h>
 
+#include "Gun.h"
+
 #define SPEED 3.0f
 
 using namespace wsp;
@@ -12,6 +14,7 @@ class UFO {
 private:
     Image image;
     Sprite sprite;
+    Gun gun;
 
 public:
     UFO(LayerManager& manager);
