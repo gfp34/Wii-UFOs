@@ -1,16 +1,20 @@
 #ifndef UFOS_GUN_H
 #define UFOS_GUN_H
 
+#include <wiisprite.h>
+#include <wiiuse/wpad.h>
+
+//using namespace wsp;
 
 class Gun {
 private:
-//    Image image;
-//    Sprite sprite;
+    Image image;
+    Sprite sprite;
 
 public:
-//    Sprite getSprite();
+    Gun(LayerManager& manager);
 
-
+    Sprite* getSprite();
 };
 
 

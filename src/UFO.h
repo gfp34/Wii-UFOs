@@ -8,13 +8,16 @@
 
 #define SPEED 3.0f
 
-using namespace wsp;
+//using namespace wsp;
 
 class UFO {
 private:
     Image image;
     Sprite sprite;
     Gun gun;
+
+    f32 getCenterX();
+    f32 getCenterY();
 
 public:
     UFO(LayerManager& manager);

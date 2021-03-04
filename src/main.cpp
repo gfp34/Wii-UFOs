@@ -10,7 +10,7 @@ using namespace wsp;
 int main(int argc, char** argv) {
     // Create the game window and initialize the VIDEO subsystem
     GameWindow gwd;
-    LayerManager manager(2);
+    LayerManager manager(3);
 
     // Initialize video
     gwd.InitVideo();
