@@ -3,11 +3,13 @@
 
 #include <wiisprite.h>
 #include <wiiuse/wpad.h>
+#include <cmath>
 
 #include "Crosshair.h"
 #include "Gun.h"
 
-#define SPEED 3.0f
+#define SPEED 4.0f
+#define DEADZONE .25
 
 //using namespace wsp;
 

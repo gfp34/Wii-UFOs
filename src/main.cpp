@@ -27,7 +27,7 @@ int main(int argc, char** argv) {
         WPAD_ScanPads();
         ufo1.move(WPAD_CHAN_0);
 
-        u32 pressed = WPAD_ButtonsHeld(WPAD_CHAN_ALL);
+        u32 pressed = WPAD_ButtonsHeld(WPAD_CHAN_0);
         if(pressed & WPAD_BUTTON_HOME)
             inGame = false;
         manager.Draw(0, 0);

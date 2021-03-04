@@ -20,22 +20,15 @@ f32 UFO::getCenterY() {
 }
 
 void UFO::move(int wpad_chan) {
-    u32 pressed = WPAD_ButtonsHeld(wpad_chan);
-
-    f32 dx = 0, dy = 0;
-    if(pressed & WPAD_BUTTON_UP) {
-        // UP
-        dy = -SPEED;
-    } if(pressed & WPAD_BUTTON_DOWN) {
-        // DOWN
-        dy = SPEED;
-    } if(pressed & WPAD_BUTTON_LEFT) {
-        // LEFT
-        dx = -SPEED;
-    } if(pressed & WPAD_BUTTON_RIGHT) {
-        // RIGHT
-        dx = SPEED;
-    }
+    // Joystick movement
+    expansion_t expansion;
+    WPAD_Expansion(wpad_chan, &expansion);
+    nunchuk_t nunchuk = expansion.nunchuk;
+    joystick_t js= nunchuk.js;
+    f32 dx = sin(js.ang * (M_PI/180.0)) * js.mag * SPEED;
+    f32 dy = -cos(js.ang * (M_PI/180.0)) * js.mag * SPEED;
+    if(abs(dx) < DEADZONE) dx = 0;
+    if(abs(dy) < DEADZONE) dy = 0;
     sprite.Move(dx, dy);
 
     // Crosshair movement
@@ -43,6 +36,7 @@ void UFO::move(int wpad_chan) {
     WPAD_IR(wpad_chan, &ir);
     crosshair.move(ir);
 
+    // Move and rotate gun
     gun.getSprite()->SetPosition(this->getCenterX(),
                                  this->getCenterY() - gun.getSprite()->GetHeight()/2);
     gun.rotate(this->getCenterX(), this->getCenterY(),
