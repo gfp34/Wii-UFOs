@@ -21,20 +21,13 @@ int main(int argc, char** argv) {
 
     // Init Game Objects
     UFO ufo1(manager);
-    Crosshair crosshair(manager);
 
     bool inGame = true;
     while(inGame) {
-        // Button Input
         WPAD_ScanPads();
-        u32 pressed = WPAD_ButtonsHeld(WPAD_CHAN_0);
-        ufo1.move(pressed);
+        ufo1.move(WPAD_CHAN_0);
 
-        // IR Input
-        ir_t ir;
-        WPAD_IR(WPAD_CHAN_0, &ir);
-        crosshair.move(ir);
-
+        u32 pressed = WPAD_ButtonsHeld(WPAD_CHAN_ALL);
         if(pressed & WPAD_BUTTON_HOME)
             inGame = false;
         manager.Draw(0, 0);

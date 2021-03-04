@@ -13,6 +13,8 @@ private:
 public:
     Crosshair(LayerManager& manager);
 
+    Sprite* getSprite();
+
     void move(ir_t &ir);
 };
 

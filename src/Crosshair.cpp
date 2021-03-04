@@ -11,6 +11,10 @@ Crosshair::Crosshair(LayerManager& manager) {
     manager.Append(&sprite);
 }
 
+Sprite* Crosshair::getSprite() {
+    return &sprite;
+}
+
 void Crosshair::move(ir_t &ir) {
     sprite.SetPosition(ir.sx-WSP_POINTER_CORRECTION_X, ir.sy-WSP_POINTER_CORRECTION_Y);
 }

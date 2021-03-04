@@ -4,6 +4,7 @@
 #include <wiisprite.h>
 #include <wiiuse/wpad.h>
 
+#include "Crosshair.h"
 #include "Gun.h"
 
 #define SPEED 3.0f
@@ -15,6 +16,7 @@ private:
     Image image;
     Sprite sprite;
     Gun gun;
+    Crosshair crosshair;
 
     f32 getCenterX();
     f32 getCenterY();
@@ -22,7 +24,7 @@ private:
 public:
     UFO(LayerManager& manager);
 
-    void move(u32 pressed);
+    void move(int wpad_chan);
 };
 
 

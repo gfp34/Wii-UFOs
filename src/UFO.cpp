@@ -2,14 +2,13 @@
 
 #include "UFO1_png.h"
 
-UFO::UFO(LayerManager& manager) : gun(manager) {
+UFO::UFO(LayerManager& manager) : gun(manager), crosshair(manager) {
     // Load image and init sprite
     if(image.LoadImage(UFO1_png) != IMG_LOAD_ERROR_NONE)
         exit(1);
     sprite.SetImage(&image);
     sprite.SetPosition(0, 0);
     manager.Append(&sprite);
-
 }
 
 f32 UFO::getCenterX() {
@@ -20,7 +19,9 @@ f32 UFO::getCenterY() {
     return sprite.GetY() + sprite.GetHeight()/2;
 }
 
-void UFO::move(u32 pressed) {
+void UFO::move(int wpad_chan) {
+    u32 pressed = WPAD_ButtonsHeld(wpad_chan);
+
     f32 dx = 0, dy = 0;
     if(pressed & WPAD_BUTTON_UP) {
         // UP
@@ -37,6 +38,12 @@ void UFO::move(u32 pressed) {
     }
     sprite.Move(dx, dy);
 
+    // Crosshair movement
+    ir_t ir;
+    WPAD_IR(wpad_chan, &ir);
+    crosshair.move(ir);
+
     gun.getSprite()->SetPosition(this->getCenterX(),
                                  this->getCenterY() - gun.getSprite()->GetHeight()/2);
+    gun.rotate();
 }
