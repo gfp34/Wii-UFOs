@@ -11,8 +11,12 @@ Crosshair::Crosshair(LayerManager& manager) {
     manager.Append(&sprite);
 }
 
-Sprite* Crosshair::getSprite() {
-    return &sprite;
+f32 Crosshair::getCenterX() {
+    return sprite.GetX() + sprite.GetWidth()/2;
+}
+
+f32 Crosshair::getCenterY() {
+    return sprite.GetY() + sprite.GetHeight()/2;
 }
 
 void Crosshair::move(ir_t &ir) {

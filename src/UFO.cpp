@@ -45,5 +45,6 @@ void UFO::move(int wpad_chan) {
 
     gun.getSprite()->SetPosition(this->getCenterX(),
                                  this->getCenterY() - gun.getSprite()->GetHeight()/2);
-    gun.rotate();
+    gun.rotate(this->getCenterX(), this->getCenterY(),
+               crosshair.getCenterX(), crosshair.getCenterY());
 }

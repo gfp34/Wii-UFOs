@@ -14,6 +14,8 @@ public:
     Crosshair(LayerManager& manager);
 
     Sprite* getSprite();
+    f32 getCenterX();
+    f32 getCenterY();
 
     void move(ir_t &ir);
 };

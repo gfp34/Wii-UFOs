@@ -3,6 +3,9 @@
 
 #include <wiisprite.h>
 #include <wiiuse/wpad.h>
+#include <cmath>
+
+#include "Crosshair.h"
 
 //using namespace wsp;
 
@@ -15,6 +18,8 @@ public:
     Gun(LayerManager& manager);
 
     Sprite* getSprite();
+
+    void rotate(f32 ufoX, f32 ufoY, f32 crossX, f32 crossY);
 };
 
 
