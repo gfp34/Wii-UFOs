@@ -19,12 +19,12 @@ f32 UFO::getCenterY() {
     return sprite.GetY() + sprite.GetHeight()/2;
 }
 
-void UFO::move(int wpad_chan) {
+void UFO::control(int wpad_chan) {
     // Joystick movement
     expansion_t expansion;
     WPAD_Expansion(wpad_chan, &expansion);
     nunchuk_t nunchuk = expansion.nunchuk;
-    joystick_t js= nunchuk.js;
+    joystick_t js = nunchuk.js;
     f32 dx = sin(js.ang * (M_PI/180.0)) * js.mag * SPEED;
     f32 dy = -cos(js.ang * (M_PI/180.0)) * js.mag * SPEED;
     if(abs(dx) < DEADZONE) dx = 0;
@@ -41,4 +41,9 @@ void UFO::move(int wpad_chan) {
                                  this->getCenterY() - gun.getSprite()->GetHeight()/2);
     gun.rotate(this->getCenterX(), this->getCenterY(),
                crosshair.getCenterX(), crosshair.getCenterY());
+
+    // Fire gun
+    u32 pressed = WPAD_ButtonsHeld(wpad_chan);
+    if(pressed & WPAD_BUTTON_A)
+        gun.fire();
 }

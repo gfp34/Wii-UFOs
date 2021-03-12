@@ -3,6 +3,7 @@
 
 #include "UFO.h"
 #include "Crosshair.h"
+#include "Laser.h"
 
 // libwiisprite uses wsp as it's namespace
 using namespace wsp;
@@ -25,12 +26,15 @@ int main(int argc, char** argv) {
     bool inGame = true;
     while(inGame) {
         WPAD_ScanPads();
-        ufo1.move(WPAD_CHAN_0);
+        ufo1.control(WPAD_CHAN_0);
 
         u32 pressed = WPAD_ButtonsHeld(WPAD_CHAN_0);
         if(pressed & WPAD_BUTTON_HOME)
             inGame = false;
         manager.Draw(0, 0);
+//        Laser::laserManager.Draw(0, 0);
+//        if (Laser::laserManager.GetSize() > 0)
+//            Laser::laserManager.Draw(0, 0);
         gwd.Flush();
     }
     return 0;

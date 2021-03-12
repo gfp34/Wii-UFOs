@@ -6,6 +6,7 @@
 #include <cmath>
 
 #include "Crosshair.h"
+#include "Laser.h"
 
 //using namespace wsp;
 
@@ -13,6 +14,7 @@ class Gun {
 private:
     Image image;
     Sprite sprite;
+    f32 angle;
 
 public:
     Gun(LayerManager& manager);
@@ -20,6 +22,7 @@ public:
     Sprite* getSprite();
 
     void rotate(f32 ufoX, f32 ufoY, f32 crossX, f32 crossY);
+    void fire();
 };
 
 

@@ -26,7 +26,7 @@ private:
 public:
     UFO(LayerManager& manager);
 
-    void move(int wpad_chan);
+    void control(int wpad_chan);
 };
 
 

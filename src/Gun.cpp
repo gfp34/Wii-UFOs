@@ -17,7 +17,14 @@ Sprite* Gun::getSprite() {
 
 void Gun::rotate(f32 ufoX, f32 ufoY, f32 crossX, f32 crossY) {
     if(crossX < ufoX)
-        sprite.SetRotation((atan((ufoY - crossY)/(ufoX - crossX)) * (180.0/M_PI) - 180) / 2);
+        angle = (atan((ufoY - crossY)/(ufoX - crossX)) * (180.0/M_PI) - 180) / 2;
     else
-        sprite.SetRotation(atan((ufoY - crossY)/(ufoX - crossX)) * (180.0/M_PI) / 2);
+        angle = atan((ufoY - crossY)/(ufoX - crossX)) * (180.0/M_PI) / 2;
+    sprite.SetRotation(angle);
+}
+
+void Gun::fire() {
+    Laser(f32(sprite.GetX() + cos(angle) * sprite.GetWidth()),
+          f32(sprite.GetY() + sin(angle) * sprite.GetWidth()),
+          angle);
 }
