@@ -13,4 +13,15 @@ Laser::Laser(f32 startX, f32 startY, f32 angle) {
     sprite.SetPosition(startX, startY);
     sprite.SetRotation(angle);
 
+    allLasers.push_back(*this);
+}
+
+void Laser::draw() {
+    this->sprite.Draw(0, 0);
+}
+
+void Laser::drawAllLasers() {
+    for(auto it = allLasers.begin(); it != allLasers.end(); it++) {
+        it->draw();
+    }
 }
