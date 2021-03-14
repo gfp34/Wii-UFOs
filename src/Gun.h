@@ -8,6 +8,8 @@
 #include "Crosshair.h"
 #include "Laser.h"
 
+#define FIRE_DELAY 500
+
 //using namespace wsp;
 
 class Gun {
@@ -15,6 +17,7 @@ private:
     Image image;
     Sprite sprite;
     f32 angle;
+
 
 public:
     Gun(LayerManager& manager);

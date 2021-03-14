@@ -12,7 +12,7 @@ private:
     Sprite sprite;
     f32 angle;
 
-    static std::vector<Laser> allLasers;
+    static std::vector<Laser*> allLasers;
 
 public:
     Laser(f32 startX, f32 startY, f32 angle);

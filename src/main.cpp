@@ -1,5 +1,6 @@
 #include <wiiuse/wpad.h>
 #include <wiisprite.h>
+#include <iostream>
 
 #include "UFO.h"
 #include "Crosshair.h"
@@ -9,6 +10,7 @@
 using namespace wsp;
 
 int main(int argc, char** argv) {
+
     // Create the game window and initialize the VIDEO subsystem
     GameWindow gwd;
     LayerManager manager(3);
@@ -35,7 +37,7 @@ int main(int argc, char** argv) {
 //        Laser::laserManager.Draw(0, 0);
 //        if (Laser::laserManager.GetSize() > 0)
 //            Laser::laserManager.Draw(0, 0);
-        Laser::drawAllLasers();
+//        Laser::drawAllLasers();
         gwd.Flush();
     }
     return 0;
