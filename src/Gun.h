@@ -4,6 +4,8 @@
 #include <wiisprite.h>
 #include <wiiuse/wpad.h>
 #include <cmath>
+#include <chrono>
+#include <stdint.h>
 
 #include "Crosshair.h"
 #include "Laser.h"
@@ -17,7 +19,9 @@ private:
     Image image;
     Sprite sprite;
     f32 angle;
+    uint64_t lastFireTime;
 
+    static uint64_t currentTimeMillis();
 
 public:
     Gun(LayerManager& manager);

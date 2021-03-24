@@ -9,6 +9,8 @@ Gun::Gun(LayerManager& manager) {
     sprite.SetRefPixelPosition(0, sprite.GetHeight()/2);
 
     manager.Append(&sprite);
+
+    lastFireTime = currentTimeMillis();
 }
 
 Sprite* Gun::getSprite() {
@@ -24,7 +26,18 @@ void Gun::rotate(f32 ufoX, f32 ufoY, f32 crossX, f32 crossY) {
 }
 
 void Gun::fire() {
-    Laser(f32(sprite.GetX() + cos(angle) * sprite.GetWidth()),
-          f32(sprite.GetY() + sin(angle) * sprite.GetWidth()),
-          angle);
+    uint64_t curTime = currentTimeMillis();
+    printf("curtime = %d\n", curTime);
+    if((curTime - lastFireTime) > FIRE_DELAY) {
+        Laser(f32(sprite.GetX() + cos(angle) * sprite.GetWidth()),
+              f32(sprite.GetY() + sin(angle) * sprite.GetWidth()),
+              angle);
+        lastFireTime = curTime;
+    }
+}
+
+uint64_t Gun::currentTimeMillis() {
+    return (uint64_t) std::chrono::duration_cast<std::chrono::milliseconds>(
+            std::chrono::system_clock::now().time_since_epoch()
+            ).count();
 }
