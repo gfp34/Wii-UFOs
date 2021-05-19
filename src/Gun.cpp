@@ -2,15 +2,13 @@
 
 #include "Gun_png.h"
 
-Gun::Gun(LayerManager& manager) {
+Gun::Gun(LayerManager& manager): laserManager(16) {
     if(image.LoadImage(Gun_png) != IMG_LOAD_ERROR_NONE)
         exit(1);
     sprite.SetImage(&image);
     sprite.SetRefPixelPosition(0, sprite.GetHeight()/2);
 
     manager.Append(&sprite);
-
-    lastFireTime = currentTimeMillis();
 }
 
 Sprite* Gun::getSprite() {
@@ -26,14 +24,11 @@ void Gun::rotate(f32 ufoX, f32 ufoY, f32 crossX, f32 crossY) {
 }
 
 void Gun::fire() {
-    uint64_t curTime = currentTimeMillis();
-    printf("curtime = %d\n", curTime);
-    if((curTime - lastFireTime) > FIRE_DELAY) {
-        Laser(f32(sprite.GetX() + cos(angle) * sprite.GetWidth()),
-              f32(sprite.GetY() + sin(angle) * sprite.GetWidth()),
-              angle);
-        lastFireTime = curTime;
-    }
+    Laser laser(laserManager,
+                f32(sprite.GetX() + cos(angle) * sprite.GetWidth()),
+                f32(sprite.GetY() + sin(angle) * sprite.GetWidth()),
+                angle);
+    laserManager.Draw(0, 0);
 }
 
 uint64_t Gun::currentTimeMillis() {

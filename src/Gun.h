@@ -12,13 +12,13 @@
 
 #define FIRE_DELAY 500
 
-//using namespace wsp;
-
 class Gun {
 private:
     Image image;
     Sprite sprite;
     f32 angle;
+//    std::vector<Laser> lasers;
+    LayerManager laserManager;
     uint64_t lastFireTime;
 
     static uint64_t currentTimeMillis();

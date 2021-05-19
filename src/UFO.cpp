@@ -44,6 +44,10 @@ void UFO::control(int wpad_chan) {
 
     // Fire gun
     u32 pressed = WPAD_ButtonsHeld(wpad_chan);
-    if(pressed & WPAD_BUTTON_A)
+    if((pressed & WPAD_BUTTON_A) && !A_down) {
+        A_down = true;
         gun.fire();
+    }
+    if(A_down && !(pressed & WPAD_BUTTON_A))
+        A_down = false;
 }

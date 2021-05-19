@@ -3,8 +3,6 @@
 
 #include <wiisprite.h>
 #include <wiiuse/wpad.h>
-#include <vector>
-
 
 class Laser {
 private:
@@ -12,15 +10,11 @@ private:
     Sprite sprite;
     f32 angle;
 
-    static std::vector<Laser*> allLasers;
-
 public:
-    Laser(f32 startX, f32 startY, f32 angle);
+    Laser(LayerManager& manager, f32 startX, f32 startY, f32 angle);
 
     void draw();
 
-//    static LayerManager laserManager;
-    static void drawAllLasers();
 };
 
 

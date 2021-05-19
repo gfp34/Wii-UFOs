@@ -34,10 +34,7 @@ int main(int argc, char** argv) {
         if(pressed & WPAD_BUTTON_HOME)
             inGame = false;
         manager.Draw(0, 0);
-//        Laser::laserManager.Draw(0, 0);
-//        if (Laser::laserManager.GetSize() > 0)
-//            Laser::laserManager.Draw(0, 0);
-        Laser::drawAllLasers();
+
         gwd.Flush();
     }
     return 0;

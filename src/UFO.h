@@ -19,6 +19,7 @@ private:
     Sprite sprite;
     Gun gun;
     Crosshair crosshair;
+    bool A_down;
 
     f32 getCenterX();
     f32 getCenterY();
