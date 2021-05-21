@@ -17,17 +17,17 @@ Sprite* Gun::getSprite() {
 
 void Gun::rotate(f32 ufoX, f32 ufoY, f32 crossX, f32 crossY) {
     if(crossX < ufoX)
-        angle = (atan((ufoY - crossY)/(ufoX - crossX)) * (180.0/M_PI) - 180) / 2;
+        angle = (atan((ufoY - crossY)/(ufoX - crossX)) * (180.0/M_PI) - 180);
     else
-        angle = atan((ufoY - crossY)/(ufoX - crossX)) * (180.0/M_PI) / 2;
-    sprite.SetRotation(angle);
+        angle = atan((ufoY - crossY)/(ufoX - crossX)) * (180.0/M_PI);
+    sprite.SetRotation(angle/2);
 }
 
 void Gun::fire(LayerManager& manager) {
-    Laser laser(manager,
-                f32(sprite.GetX() + cos(angle) * sprite.GetWidth()),
-                f32(sprite.GetY() + sin(angle) * sprite.GetWidth()),
-                angle);
+    Laser* laser = new Laser(manager,
+                             f32(sprite.GetX() + sprite.GetWidth() * cos(angle * (M_PI/180.0))),
+                             f32(sprite.GetY() + sprite.GetWidth() * sin(angle * (M_PI/180.0))),
+                             angle);
 }
 
 uint64_t Gun::currentTimeMillis() {

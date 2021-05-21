@@ -10,7 +10,7 @@ Laser::Laser(LayerManager& manager, f32 startX, f32 startY, f32 angle) {
     this->angle = angle;
 
     sprite.SetPosition(startX, startY);
-    sprite.SetRotation(angle);
+    sprite.SetRotation(angle/2);
 
     manager.Append(&sprite);
 }
