@@ -1,15 +1,8 @@
 #ifndef UFOS_UFO_H
 #define UFOS_UFO_H
 
-#include <wiisprite.h>
-#include <wiiuse/wpad.h>
-#include <cmath>
-
 #include "Crosshair.h"
 #include "Gun.h"
-
-#define SPEED 4.0f
-#define DEADZONE .25
 
 //using namespace wsp;
 
@@ -27,7 +20,7 @@ private:
 public:
     UFO(LayerManager& manager);
 
-    void control(int wpad_chan);
+    void control(int wpad_chan, LayerManager& layerManager);
 };
 
 

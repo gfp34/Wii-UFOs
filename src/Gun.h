@@ -18,7 +18,6 @@ private:
     Sprite sprite;
     f32 angle;
 //    std::vector<Laser> lasers;
-    LayerManager laserManager;
     uint64_t lastFireTime;
 
     static uint64_t currentTimeMillis();
@@ -29,7 +28,7 @@ public:
     Sprite* getSprite();
 
     void rotate(f32 ufoX, f32 ufoY, f32 crossX, f32 crossY);
-    void fire();
+    void fire(LayerManager& manager);
 };
 
 

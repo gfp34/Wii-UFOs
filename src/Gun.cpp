@@ -2,7 +2,7 @@
 
 #include "Gun_png.h"
 
-Gun::Gun(LayerManager& manager): laserManager(16) {
+Gun::Gun(LayerManager& manager) {
     if(image.LoadImage(Gun_png) != IMG_LOAD_ERROR_NONE)
         exit(1);
     sprite.SetImage(&image);
@@ -23,12 +23,11 @@ void Gun::rotate(f32 ufoX, f32 ufoY, f32 crossX, f32 crossY) {
     sprite.SetRotation(angle);
 }
 
-void Gun::fire() {
-    Laser laser(laserManager,
+void Gun::fire(LayerManager& manager) {
+    Laser laser(manager,
                 f32(sprite.GetX() + cos(angle) * sprite.GetWidth()),
                 f32(sprite.GetY() + sin(angle) * sprite.GetWidth()),
                 angle);
-    laserManager.Draw(0, 0);
 }
 
 uint64_t Gun::currentTimeMillis() {

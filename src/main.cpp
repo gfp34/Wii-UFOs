@@ -13,7 +13,7 @@ int main(int argc, char** argv) {
 
     // Create the game window and initialize the VIDEO subsystem
     GameWindow gwd;
-    LayerManager manager(3);
+    LayerManager manager(64);
 
     // Initialize video
     gwd.InitVideo();
@@ -28,13 +28,12 @@ int main(int argc, char** argv) {
     bool inGame = true;
     while(inGame) {
         WPAD_ScanPads();
-        ufo1.control(WPAD_CHAN_0);
+        ufo1.control(WPAD_CHAN_0, manager);
 
         u32 pressed = WPAD_ButtonsHeld(WPAD_CHAN_0);
         if(pressed & WPAD_BUTTON_HOME)
             inGame = false;
         manager.Draw(0, 0);
-
         gwd.Flush();
     }
     return 0;

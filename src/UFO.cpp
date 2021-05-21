@@ -1,13 +1,20 @@
 #include "UFO.h"
 
+#include <wiisprite.h>
+#include <wiiuse/wpad.h>
+#include <cmath>
 #include "UFO1_png.h"
 
-UFO::UFO(LayerManager& manager) : gun(manager), crosshair(manager) {
+#define SPEED 4.0f
+#define DEADZONE .25
+
+UFO::UFO(LayerManager& manager): gun(manager), crosshair(manager) {
     // Load image and init sprite
     if(image.LoadImage(UFO1_png) != IMG_LOAD_ERROR_NONE)
         exit(1);
     sprite.SetImage(&image);
     sprite.SetPosition(0, 0);
+
     manager.Append(&sprite);
 }
 
@@ -19,7 +26,7 @@ f32 UFO::getCenterY() {
     return sprite.GetY() + sprite.GetHeight()/2;
 }
 
-void UFO::control(int wpad_chan) {
+void UFO::control(int wpad_chan, LayerManager& manager) {
     // Joystick movement
     expansion_t expansion;
     WPAD_Expansion(wpad_chan, &expansion);
@@ -46,7 +53,7 @@ void UFO::control(int wpad_chan) {
     u32 pressed = WPAD_ButtonsHeld(wpad_chan);
     if((pressed & WPAD_BUTTON_A) && !A_down) {
         A_down = true;
-        gun.fire();
+        gun.fire(manager);
     }
     if(A_down && !(pressed & WPAD_BUTTON_A))
         A_down = false;
