@@ -8,6 +8,8 @@
 #define SPEED 4.0f
 #define DEADZONE .25
 
+#define TO_RADS(theta) (theta * M_PI/180.0)
+
 UFO::UFO(LayerManager& manager): gun(manager), crosshair(manager) {
     // Load image and init sprite
     if(image.LoadImage(UFO1_png) != IMG_LOAD_ERROR_NONE)
@@ -32,8 +34,8 @@ void UFO::control(int wpad_chan, LayerManager& manager) {
     WPAD_Expansion(wpad_chan, &expansion);
     nunchuk_t nunchuk = expansion.nunchuk;
     joystick_t js = nunchuk.js;
-    f32 dx = sin(js.ang * (M_PI/180.0)) * js.mag * SPEED;
-    f32 dy = -cos(js.ang * (M_PI/180.0)) * js.mag * SPEED;
+    f32 dx = sin(TO_RADS(js.ang)) * js.mag * SPEED;
+    f32 dy = -cos(TO_RADS(js.ang)) * js.mag * SPEED;
     if(abs(dx) < DEADZONE) dx = 0;
     if(abs(dy) < DEADZONE) dy = 0;
     sprite.Move(dx, dy);
@@ -53,7 +55,7 @@ void UFO::control(int wpad_chan, LayerManager& manager) {
     u32 pressed = WPAD_ButtonsHeld(wpad_chan);
     if((pressed & WPAD_BUTTON_A) && !A_down) {
         A_down = true;
-        gun.fire(manager);
+        gun.fire(manager, getCenterX(), getCenterY());
     }
     if(A_down && !(pressed & WPAD_BUTTON_A))
         A_down = false;

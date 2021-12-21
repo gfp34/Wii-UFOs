@@ -4,6 +4,8 @@
 #include <wiisprite.h>
 #include <wiiuse/wpad.h>
 
+#include "Gun.h"
+
 class Laser {
 private:
     Image image;
@@ -11,10 +13,7 @@ private:
     f32 angle;
 
 public:
-    Laser(LayerManager& manager, f32 startX, f32 startY, f32 angle);
-
-    void draw();
-
+    Laser(LayerManager& manager, Gun* gun, f32 centerX, f32 centerY);
 };
 
 

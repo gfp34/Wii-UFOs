@@ -8,7 +8,6 @@
 #include <stdint.h>
 
 #include "Crosshair.h"
-#include "Laser.h"
 
 #define FIRE_DELAY 500
 
@@ -25,10 +24,13 @@ private:
 public:
     Gun(LayerManager& manager);
 
+    f32 getAngle();
+	f32 getEndX();
+	f32 getEndY();
     Sprite* getSprite();
 
     void rotate(f32 ufoX, f32 ufoY, f32 crossX, f32 crossY);
-    void fire(LayerManager& manager);
+    void fire(LayerManager& manager, f32 centerX, f32 centerY);
 };
 
 
